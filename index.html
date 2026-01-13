@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Precios iPhones - Pesos Colombianos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: #F5F5F7;
+            color: #1D1D1F;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            background-color: #0276DF;
+            color: #FFFFFF;
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            min-height: 180px;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(2, 118, 223, 0.9) 0%, rgba(2, 118, 223, 0.7) 100%);
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 15px;
+            opacity: 0.95;
+            margin-bottom: 12px;
+            max-width: 70%;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .currency-note {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.25);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .model-section {
+            padding: 20px;
+            border-bottom: 1px solid #E5E5E7;
+        }
+        
+        .model-section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .model-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #F0F0F0;
+        }
+        
+        .model-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1D1D1F;
+        }
+        
+        .model-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0276DF;
+            text-align: right;
+        }
+        
+        .price-cop {
+            font-size: 14px;
+            font-weight: 500;
+            color: #86868B;
+            margin-top: 2px;
+        }
+        
+        .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        
+        .color-option {
+            display: flex;
+            align-items: center;
+            background-color: #FBFBFD;
+            border-radius: 12px;
+            padding: 12px 14px;
+            min-width: 180px;
+            flex: 1;
+            min-width: 180px;
+            border: 1px solid #E5E5E7;
+            transition: transform 0.2s ease;
+        }
+        
+        .color-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .color-indicator {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            margin-right: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .color-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1D1D1F;
+            margin-right: auto;
+            text-transform: capitalize;
+        }
+        
+        .battery-info {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #1D1D1F;
+            font-weight: 500;
+        }
+        
+        .battery-icon {
+            margin-right: 5px;
+            color: #34C759;
+            font-size: 16px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #86868B;
+            font-size: 14px;
+            border-top: 1px solid #E5E5E7;
+            background-color: #FBFBFD;
+            border-radius: 0 0 18px 18px;
+        }
+        
+        .availability {
+            display: inline-block;
+            background-color: #F5F5F7;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #1D1D1F;
+            margin-left: 8px;
+        }
+        
+        .color-negro { background-color: #1D1D1F; }
+        .color-natural { background-color: #E3D5C5; }
+        .color-dorado { background-color: #F5E8D0; }
+        .color-desert { background-color: #C69C6D; }
+        .color-azul { background-color: #4C6B8A; }
+        .color-blanco { background-color: #F5F5F7; border: 1px solid #D1D1D6; }
+        .color-morado { background-color: #D1CDDA; }
+        
+        @media (max-width: 600px) {
+            .header {
+                min-height: 160px;
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 21px;
+            }
+            
+            .header p {
+                max-width: 100%;
+                font-size: 14px;
+            }
+            
+            .color-option {
+                min-width: 100%;
+            }
+            
+            .model-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .model-price {
+                margin-top: 5px;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-overlay"></div>
+            <div class="header-content">
+                <h1>Lista de Precios - iPhones</h1>
+                <p>Disponibilidad y estado de batería actualizados</p>
+                <div class="currency-note">Precios en pesos colombianos (COP)</div>
+            </div>
+        </div>
+        
+        <!-- iPhone 16 Pro Max 512GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 16 Pro Max 512GB</div>
+                <div class="model-price">$3.980.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-negro"></div>
+                    <div class="color-name">Negro</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>95%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-natural"></div>
+                    <div class="color-name">Natural</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>96%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-dorado"></div>
+                    <div class="color-name">Dorado</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>90%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 16 Pro Max 256GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 16 Pro Max 256GB</div>
+                <div class="model-price">$3.850.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-dorado"></div>
+                    <div class="color-name">Dorado</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>92%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-negro"></div>
+                    <div class="color-name">Negro</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>93%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-natural"></div>
+                    <div class="color-name">Natural</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>93%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 16 Pro Max 256GB (desert) -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 16 Pro Max 256GB</div>
+                <div class="model-price">$3.750.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-desert"></div>
+                    <div class="color-name">Desert</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>91%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 16 Pro 256GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 16 Pro 256GB</div>
+                <div class="model-price">$3.150.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-negro"></div>
+                    <div class="color-name">Negro</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>95%</span>
+                        <span class="availability">A.P.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 16 Pro 128GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 16 Pro 128GB</div>
+                <div class="model-price">$3.050.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-negro"></div>
+                    <div class="color-name">Negro</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>93%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-desert"></div>
+                    <div class="color-name">Desert</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-full battery-icon"></i>
+                        <span>100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 16 Plus 128GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 16 Plus 128GB</div>
+                <div class="model-price">$2.500.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-negro"></div>
+                    <div class="color-name">Negro</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>92%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 15 Pro Max 512GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 15 Pro Max 512GB</div>
+                <div class="model-price">$3.350.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-azul"></div>
+                    <div class="color-name">Azul</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>88%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-natural"></div>
+                    <div class="color-name">Natural</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>84%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 15 Pro Max 256GB SIM -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 15 Pro Max 256GB SIM</div>
+                <div class="model-price">$3.100.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-natural"></div>
+                    <div class="color-name">Natural</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>87%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 15 Pro Max 256GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 15 Pro Max 256GB</div>
+                <div class="model-price">$2.950.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-negro"></div>
+                    <div class="color-name">Negro</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>89%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-azul"></div>
+                    <div class="color-name">Azul</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>83%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-natural"></div>
+                    <div class="color-name">Natural</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>89%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-blanco"></div>
+                    <div class="color-name">Blanco</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>86%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 15 Pro 256GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 15 Pro 256GB</div>
+                <div class="model-price">$2.800.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-natural"></div>
+                    <div class="color-name">Natural</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>86%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-negro"></div>
+                    <div class="color-name">Negro</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>90%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 15 Pro 128GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 15 Pro 128GB</div>
+                <div class="model-price">$2.700.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-negro"></div>
+                    <div class="color-name">Negro</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>88%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-blanco"></div>
+                    <div class="color-name">Blanco</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>85%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 14 Pro Max 256GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 14 Pro Max 256GB</div>
+                <div class="model-price">$2.600.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-dorado"></div>
+                    <div class="color-name">Dorado</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>84%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 14 Pro Max 128GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 14 Pro Max 128GB</div>
+                <div class="model-price">$2.450.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-morado"></div>
+                    <div class="color-name">Morado</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>84%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-dorado"></div>
+                    <div class="color-name">Dorado</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>84%</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-negro"></div>
+                    <div class="color-name">Negro</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>86%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 14 Pro Max 128GB (segundo) -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 14 Pro Max 128GB</div>
+                <div class="model-price">$2.350.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-morado"></div>
+                    <div class="color-name">Morado</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>84%</span>
+                        <span class="availability">A.D.</span>
+                    </div>
+                </div>
+                <div class="color-option">
+                    <div class="color-indicator color-dorado"></div>
+                    <div class="color-name">Dorado</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>99%</span>
+                        <span class="availability">A.B.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- iPhone 14 Pro 128GB -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-name">iPhone 14 Pro 128GB</div>
+                <div class="model-price">$2.100.000
+                    <div class="price-cop">COP</div>
+                </div>
+            </div>
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-indicator color-negro"></div>
+                    <div class="color-name">Negro</div>
+                    <div class="battery-info">
+                        <i class="fas fa-battery-three-quarters battery-icon"></i>
+                        <span>84%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Todos los precios están en pesos colombianos (COP). Estados de batería verificados.</p>
+            <p>Para más información, contáctanos por WhatsApp.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Función para ajustar el ícono de batería según el porcentaje
+        document.addEventListener('DOMContentLoaded', function() {
+            const batteryInfos = document.querySelectorAll('.battery-info span:first-child');
+            
+            batteryInfos.forEach(span => {
+                const batteryText = span.textContent;
+                const batteryPercent = parseInt(batteryText);
+                const batteryIcon = span.previousElementSibling;
+                
+                // Eliminar clases de icono anteriores
+                batteryIcon.className = 'battery-icon';
+                
+                // Asignar icono según el porcentaje
+                if (batteryPercent >= 90) {
+                    batteryIcon.classList.add('fas', 'fa-battery-full');
+                    batteryIcon.style.color = '#34C759'; // Verde
+                } else if (batteryPercent >= 70) {
+                    batteryIcon.classList.add('fas', 'fa-battery-three-quarters');
+                    batteryIcon.style.color = '#FFD60A'; // Amarillo
+                } else if (batteryPercent >= 40) {
+                    batteryIcon.classList.add('fas', 'fa-battery-half');
+                    batteryIcon.style.color = '#FF9F0A'; // Naranja
+                } else {
+                    batteryIcon.classList.add('fas', 'fa-battery-quarter');
+                    batteryIcon.style.color = '#FF453A'; // Rojo
+                }
+            });
+        });
+    </script>
+</body>
+</html>
