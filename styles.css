@@ -297,12 +297,12 @@ body {
 
 /* Color mapping for iPhone colors */
 .color-black { background-color: #000000; }
-.color-natural { background-color: #F5F5F7; border: 1px solid #ddd; }
+.color-natural { background-color: #F5F5F7; border: 2px solid #ddd; }
 .color-dorado { background-color: #FFD700; }
 .color-desert { background-color: #EDC9AF; }
 .color-azul { background-color: #007AFF; }
 .color-morado { background-color: #800080; }
-.color-blanco { background-color: #FFFFFF; border: 1px solid #ddd; }
+.color-blanco { background-color: #FFFFFF; border: 2px solid #ddd; }
 .color-verde { background-color: #00FF00; }
 .color-rojo { background-color: #FF0000; }
 .color-negro { background-color: #1D1D1F; }
