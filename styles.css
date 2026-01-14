@@ -559,3 +559,74 @@ body {
         }
     }
 }
+/* Estilos para enlaces de contacto */
+.whatsapp-link, .email-link {
+    color: #86868b;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.whatsapp-link:hover, .email-link:hover {
+    color: #FFFFFF;
+}
+
+.whatsapp-link:hover {
+    color: #25D366; /* Color verde de WhatsApp */
+}
+
+.email-link:hover {
+    color: #0276DF; /* Color azul de tu paleta */
+}
+
+/* Estilos para la versión con iconos */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-icon {
+    color: #86868b;
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+.contact-item .fa-whatsapp {
+    color: #25D366; /* Color verde de WhatsApp */
+}
+
+.contact-item .fa-envelope {
+    color: #0276DF; /* Color azul de tu paleta */
+}
+/* Botón flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.whatsapp-float:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
