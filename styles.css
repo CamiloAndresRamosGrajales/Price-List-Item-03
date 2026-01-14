@@ -417,3 +417,145 @@ body {
         font-size: 2rem;
     }
 }
+/* ======================
+   RESPONSIVIDAD DE IMÁGENES
+   ====================== */
+
+/* Estilos base para imágenes responsivas */
+.responsive-img {
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Contenedor de imagen mantiene proporción */
+.category-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/2; /* Relación 600:400 = 3:2 */
+    overflow: hidden;
+    background-color: #f5f5f7;
+}
+
+/* Ajusta la imagen al contenedor */
+.category-image .responsive-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Efecto hover en imágenes */
+.category-card:hover .category-image .responsive-img {
+    transform: scale(1.05);
+}
+
+/* ======================
+   AJUSTES RESPONSIVOS PARA EL GRID
+   ====================== */
+
+/* Pantallas grandes (1200px+) - 3 columnas */
+@media (min-width: 1200px) {
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .category-image {
+        aspect-ratio: 3/2;
+    }
+}
+
+/* Tablets (768px - 1199px) - 2 columnas */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .category-image {
+        aspect-ratio: 3/2;
+    }
+}
+
+/* Móviles (hasta 767px) - 1 columna */
+@media (max-width: 767px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .category-image {
+        aspect-ratio: 3/2; /* Mantiene proporción en móviles */
+    }
+    
+    /* Ajustes adicionales para móviles pequeños */
+    @media (max-width: 480px) {
+        .category-image {
+            aspect-ratio: 4/3; /* Ligeramente más cuadrada en móviles muy pequeños */
+        }
+    }
+}
+
+/* Asegurar que las tarjetas mantengan consistencia */
+.category-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.category-image {
+    flex-shrink: 0;
+}
+
+.category-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ======================
+   AJUSTES PARA PANTALLAS MUY ANCHAS
+   ====================== */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+    
+    .category-image {
+        aspect-ratio: 3/2;
+    }
+}
+
+/* ======================
+   CORRECCIÓN PARA FIREFOX (soporte aspect-ratio)
+   ====================== */
+@supports not (aspect-ratio: 3/2) {
+    .category-image {
+        height: 400px;
+        position: relative;
+    }
+    
+    .category-image .responsive-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    
+    @media (max-width: 1199px) {
+        .category-image {
+            height: 350px;
+        }
+    }
+    
+    @media (max-width: 767px) {
+        .category-image {
+            height: 300px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .category-image {
+            height: 250px;
+        }
+    }
+}
