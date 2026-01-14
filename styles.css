@@ -575,7 +575,7 @@ body {
 }
 
 .email-link:hover {
-    color: #0276DF; /* Color azul de tu paleta */
+    color: #FFFFFF; /* Color azul de tu paleta */
 }
 
 /* Estilos para la versión con iconos */
@@ -603,7 +603,7 @@ body {
 }
 
 .contact-item .fa-envelope {
-    color: #0276DF; /* Color azul de tu paleta */
+    color: #FFFFFF; /* Color azul de tu paleta */
 }
 /* Botón flotante de WhatsApp */
 .whatsapp-float {
