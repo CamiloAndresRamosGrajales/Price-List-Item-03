@@ -635,9 +635,3 @@ body {
     display: none;
 }
 
-/* O si prefieres mostrar pero con estilo de no disponible */
-.product-card[data-disponible="false"] {
-    opacity: 0.5;
-    pointer-events: none;
-    position: relative;
-}
