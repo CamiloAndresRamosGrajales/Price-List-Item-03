@@ -630,3 +630,14 @@ body {
     transform: scale(1.1);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
+/* Agrega esto en el estilo CSS que ya tienes */
+.product-card[data-disponible="false"] {
+    display: none;
+}
+
+/* O si prefieres mostrar pero con estilo de no disponible */
+.product-card[data-disponible="false"] {
+    opacity: 0.5;
+    pointer-events: none;
+    position: relative;
+}
