@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	    <!-- Meta tags para vista previa -->
+    <!-- Meta tags para vista previa -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://camiloandresramosgrajales.github.io/Price-List-Item-03/">
     <meta property="og:title" content="OpenMercado - Tienda de Teléfonos Inteligentes">
@@ -28,6 +28,233 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
+    <style>
+        /* Estilos para el carrusel de imágenes */
+        .product-carousel {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .carousel-container {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-slide {
+            width: 33.333%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f5f5;
+        }
+        
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+        
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .carousel-prev {
+            left: 10px;
+        }
+        
+        .carousel-next {
+            right: 10px;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        
+        .carousel-indicator.active {
+            background: white;
+        }
+        
+        /* Estilos para las nuevas tarjetas de productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+        
+        .product-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        
+        .product-features li {
+            padding: 5px 0;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+        
+        .product-features li i {
+            color: #3498db;
+            margin-right: 8px;
+        }
+        
+        .product-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: auto;
+        }
+        
+        .product-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .whatsapp-cta {
+            background: #25D366;
+        }
+        
+        .whatsapp-cta:hover {
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .product-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .status-new {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        .status-refurbished {
+            background: #e67e22;
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            
+            .product-carousel {
+                height: 220px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-carousel {
+                height: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -131,6 +358,256 @@
         </div>
     </section>
 
+    <!-- Productos Destacados con Carrusel -->
+    <section class="categories" style="background: #f8f9fa; padding: 60px 0;">
+        <div class="container">
+            <h2 class="section-title">Productos Destacados</h2>
+            <p class="section-subtitle">Descubre nuestros dispositivos más populares con múltiples vistas</p>
+            
+            <div class="products-grid">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <div class="product-carousel" id="carousel-1">
+                        <div class="carousel-container">
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/carrusel/iphone_17_front.jpg" alt="iPhone 17 frente">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/carrusel/iphone_17_back.jpg" alt="iPhone 17 atrás">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/carrusel/iphone_17_side.jpg" alt="iPhone 17 lateral">
+                            </div>
+                        </div>
+                        <button class="carousel-btn carousel-prev" onclick="prevSlide(0)">‹</button>
+                        <button class="carousel-btn carousel-next" onclick="nextSlide(0)">›</button>
+                        <div class="carousel-indicators">
+                            <button class="carousel-indicator active" onclick="goToSlide(0, 0)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(0, 1)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(0, 2)"></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 17 Pro</h3>
+                        <p class="product-description">El iPhone más avanzado con Dynamic Island, cámara de 48MP y chip A17 Pro.</p>
+                        <div class="product-price">$4.999.000</div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-mobile-alt"></i> 6.3" Super Retina XDR</li>
+                            <li><i class="fas fa-camera"></i> Dual cámara 48MP</li>
+                            <li><i class="fas fa-battery-full"></i> Hasta 30 horas de video</li>
+                            <li><i class="fas fa-microchip"></i> Chip A19 Pro</li>
+                        </ul>
+                        <a href="https://wa.me/573128822591?text=Hola%20OpenMercado,%20estoy%20interesado%20en%20el%20iPhone%2015%20Pro%20Max" 
+                           class="product-cta whatsapp-cta" 
+                           target="_blank">
+                           <i class="fab fa-whatsapp"></i> Consultar en WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="product-card" hidden>
+                    <div class="product-carousel" id="carousel-2">
+                        <div class="carousel-container">
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/samsung_s24_front.jpg" alt="Samsung S24 frente">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/samsung_s24_back.jpg" alt="Samsung S24 atrás">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/samsung_s24_display.jpg" alt="Samsung S24 pantalla">
+                            </div>
+                        </div>
+                        <button class="carousel-btn carousel-prev" onclick="prevSlide(1)">‹</button>
+                        <button class="carousel-btn carousel-next" onclick="nextSlide(1)">›</button>
+                        <div class="carousel-indicators">
+                            <button class="carousel-indicator active" onclick="goToSlide(1, 0)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(1, 1)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(1, 2)"></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Samsung Galaxy S24 Ultra</h3>
+                        <p class="product-description">Potencia y creatividad con IA integrada, cámara de 200MP y S Pen incluido.</p>
+                        <div class="product-price">$4.799.000</div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-mobile-alt"></i> 6.8" Dynamic AMOLED 2X</li>
+                            <li><i class="fas fa-camera"></i> Cámara 200MP</li>
+                            <li><i class="fas fa-brain"></i> Galaxy AI integrado</li>
+                            <li><i class="fas fa-pen"></i> S Pen incluido</li>
+                        </ul>
+                        <a href="https://wa.me/573128822591?text=Hola%20OpenMercado,%20estoy%20interesado%20en%20el%20Samsung%20Galaxy%20S24%20Ultra" 
+                           class="product-cta whatsapp-cta" 
+                           target="_blank">
+                           <i class="fab fa-whatsapp"></i> Consultar en WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="product-card" hidden>
+                    <div class="product-carousel" id="carousel-3">
+                        <div class="carousel-container">
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/iphone_14_front.jpg" alt="iPhone 14 frente">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/iphone_14_colors.jpg" alt="iPhone 14 colores">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/iphone_14_camera.jpg" alt="iPhone 14 cámara">
+                            </div>
+                        </div>
+                        <button class="carousel-btn carousel-prev" onclick="prevSlide(2)">‹</button>
+                        <button class="carousel-btn carousel-next" onclick="nextSlide(2)">›</button>
+                        <div class="carousel-indicators">
+                            <button class="carousel-indicator active" onclick="goToSlide(2, 0)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(2, 1)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(2, 2)"></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 14 Refurbished</h3>
+                        <p class="product-description">Excelente relación calidad-precio. Reacondicionado con garantía de 1 año.</p>
+                        <div class="product-price">$2.499.000</div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-mobile-alt"></i> 6.1" Super Retina XDR</li>
+                            <li><i class="fas fa-camera"></i> Cámara dual 12MP</li>
+                            <li><i class="fas fa-shield-alt"></i> Garantía 1 año</li>
+                            <li><i class="fas fa-bolt"></i> Chip A15 Bionic</li>
+                        </ul>
+                        <a href="https://wa.me/573128822591?text=Hola%20OpenMercado,%20estoy%20interesado%20en%20el%20iPhone%2014%20Refurbished" 
+                           class="product-cta whatsapp-cta" 
+                           target="_blank">
+                           <i class="fab fa-whatsapp"></i> Consultar en WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="product-card" hidden>
+                    <div class="product-carousel" id="carousel-4">
+                        <div class="carousel-container">
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/samsung_zfold_front.jpg" alt="Samsung Z Fold frente">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/samsung_zfold_open.jpg" alt="Samsung Z Fold abierto">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/samsung_zfold_angle.jpg" alt="Samsung Z Fold ángulo">
+                            </div>
+                        </div>
+                        <button class="carousel-btn carousel-prev" onclick="prevSlide(3)">‹</button>
+                        <button class="carousel-btn carousel-next" onclick="nextSlide(3)">›</button>
+                        <div class="carousel-indicators">
+                            <button class="carousel-indicator active" onclick="goToSlide(3, 0)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(3, 1)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(3, 2)"></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Samsung Z Fold 5</h3>
+                        <p class="product-description">Smartphone plegable premium con pantalla interna de 7.6" y Snapdragon 8 Gen 2.</p>
+                        <div class="product-price">$5.999.000</div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-expand-alt"></i> Pantalla 7.6" plegable</li>
+                            <li><i class="fas fa-camera"></i> Triple cámara 50MP</li>
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8 Gen 2</li>
+                            <li><i class="fas fa-water"></i> Resistente al agua</li>
+                        </ul>
+                        <a href="https://wa.me/573128822591?text=Hola%20OpenMercado,%20estoy%20interesado%20en%20el%20Samsung%20Z%20Fold%205" 
+                           class="product-cta whatsapp-cta" 
+                           target="_blank">
+                           <i class="fab fa-whatsapp"></i> Consultar en WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Producto 5 -->
+                <div class="product-card" hidden>
+                    <div class="product-carousel" id="carousel-5">
+                        <div class="carousel-container">
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/iphone_se_front.jpg" alt="iPhone SE frente">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/iphone_se_back.jpg" alt="iPhone SE atrás">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/iphone_se_compact.jpg" alt="iPhone SE tamaño">
+                            </div>
+                        </div>
+                        <button class="carousel-btn carousel-prev" onclick="prevSlide(4)">‹</button>
+                        <button class="carousel-btn carousel-next" onclick="nextSlide(4)">›</button>
+                        <div class="carousel-indicators">
+                            <button class="carousel-indicator active" onclick="goToSlide(4, 0)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(4, 1)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(4, 2)"></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone SE 2022</h3>
+                        <p class="product-description">iPhone compacto y potente con chip A15 Bionic a un precio accesible.</p>
+                        <div class="product-price">$1.799.000</div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-mobile-alt"></i> 4.7" Retina HD</li>
+                            <li><i class="fas fa-microchip"></i> Chip A15 Bionic</li>
+                            <li><i class="fas fa-fingerprint"></i> Touch ID</li>
+                            <li><i class="fas fa-camera"></i> Cámara 12MP</li>
+                        </ul>
+                        <a href="https://wa.me/573128822591?text=Hola%20OpenMercado,%20estoy%20interesado%20en%20el%20iPhone%20SE%202022" 
+                           class="product-cta whatsapp-cta" 
+                           target="_blank">
+                           <i class="fab fa-whatsapp"></i> Consultar en WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Producto 6 -->
+                <div class="product-card" hidden>
+                    <div class="product-carousel" id="carousel-6">
+                        <div class="carousel-container">
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/samsung_a54_front.jpg" alt="Samsung A54 frente">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/samsung_a54_back.jpg" alt="Samsung A54 atrás">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/samsung_a54_display.jpg" alt="Samsung A54 pantalla">
+                            </div>
+                        </div>
+                        <button class="carousel-btn carousel-prev" onclick="prevSlide(5)">‹</button>
+                        <button class="carousel-btn carousel-next" onclick="nextSlide(5)">›</button>
+                        <div class="carousel-indicators">
+                            <button class="carousel-indicator active" onclick="goToSlide(5, 0)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(5, 1)"></button>
+                            <button class="carousel-indicator" onclick="goToSlide(5, 2)"></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Samsung Galaxy A54 5G</h3>
+                        <p class="product-description">Gama media premium con cámara de 50MP, 5G y batería de larga duración.</p>
+                        <div class="product-price">$1.299.000</div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-mobile-alt"></i> 6.4" Super AMOLED</li>
+                            <li><i class="fas fa-camera"></i> Cámara 50MP</li>
+                            <li><i class="fas fa-wifi"></i> Conectividad 5G</li>
+                            <li><i class="fas fa-battery-full"></i> 5000mAh</li>
+                        </ul>
+                        <a href="https://wa.me/573128822591?text=Hola%20OpenMercado,%20estoy%20interesado%20en%20el%20Samsung%20Galaxy%20A54%205G" 
+                           class="product-cta whatsapp-cta" 
+                           target="_blank">
+                           <i class="fab fa-whatsapp"></i> Consultar en WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -169,6 +646,70 @@
     </footer>
 
     <script src="script.js"></script>
+    <!-- Script para el carrusel -->
+    <script>
+        // Estado de los carruseles
+        const carouselStates = Array(6).fill(0);
+        
+        function updateCarousel(carouselIndex) {
+            const carousel = document.getElementById(`carousel-${carouselIndex + 1}`);
+            const container = carousel.querySelector('.carousel-container');
+            const indicators = carousel.querySelectorAll('.carousel-indicator');
+            
+            // Mover el contenedor
+            container.style.transform = `translateX(-${carouselStates[carouselIndex] * 33.333}%)`;
+            
+            // Actualizar indicadores
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === carouselStates[carouselIndex]);
+            });
+        }
+        
+        function nextSlide(carouselIndex) {
+            carouselStates[carouselIndex] = (carouselStates[carouselIndex] + 1) % 3;
+            updateCarousel(carouselIndex);
+        }
+        
+        function prevSlide(carouselIndex) {
+            carouselStates[carouselIndex] = (carouselStates[carouselIndex] - 1 + 3) % 3;
+            updateCarousel(carouselIndex);
+        }
+        
+        function goToSlide(carouselIndex, slideIndex) {
+            carouselStates[carouselIndex] = slideIndex;
+            updateCarousel(carouselIndex);
+        }
+        
+        // Auto avance de carruseles
+        function startAutoCarousel() {
+            setInterval(() => {
+                carouselStates.forEach((_, index) => {
+                    nextSlide(index);
+                });
+            }, 5000); // Cambia cada 5 segundos
+        }
+        
+        // Iniciar auto avance después de 3 segundos
+        setTimeout(startAutoCarousel, 3000);
+        
+        // Pausar auto avance al pasar el mouse
+        document.querySelectorAll('.product-carousel').forEach(carousel => {
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(window.autoCarouselInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                startAutoCarousel();
+            });
+        });
+        
+        // Inicializar todos los carruseles
+        document.addEventListener('DOMContentLoaded', () => {
+            carouselStates.forEach((_, index) => {
+                updateCarousel(index);
+            });
+        });
+    </script>
 	<!-- Botón flotante de WhatsApp -->
 <a href="https://wa.me/573128822591?text=Hola%20OpenMercado,%20estoy%20interesado%20en%20sus%20productos" 
    target="_blank" 
