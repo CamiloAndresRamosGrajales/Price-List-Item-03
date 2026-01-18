@@ -635,3 +635,48 @@ body {
     display: none;
 }
 
+<style>
+    /* Estilos para los botones */
+    .product-cta {
+        display: inline-block;
+        padding: 12px 20px;
+        margin: 10px 10px 0 0;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+    
+    .whatsapp-cta {
+        background-color: #25D366;
+        color: white;
+        border: 2px solid #25D366;
+    }
+    
+    .whatsapp-cta:hover {
+        background-color: #128C7E;
+        border-color: #128C7E;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .apple-cta {
+        background-color: #000000;
+        color: white;
+        border: 2px solid #000000;
+    }
+    
+    .apple-cta:hover {
+        background-color: #333333;
+        border-color: #333333;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .product-cta i {
+        margin-right: 8px;
+        font-size: 18px;
+    }
+</style>
