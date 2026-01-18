@@ -42,9 +42,16 @@ function formatProductPrices() {
         element.textContent = '$' + formattedPrice;
     });
 }
-img.addEventListener('click', (e) => {
-    console.log('Imagen clickeada', img);
-    const productId = parseInt(img.getAttribute('data-product'));
-    const slideIndex = parseInt(img.getAttribute('data-slide'));
-    openModal(productId, slideIndex);
+// Delegación de eventos para las imágenes del carrusel
+document.querySelectorAll('.product-carousel').forEach(carousel => {
+    carousel.addEventListener('click', (e) => {
+        // Verificar si el clic fue en una imagen
+        const img = e.target.closest('.carousel-slide img');
+        if (img) {
+            e.preventDefault();
+            const productId = parseInt(img.getAttribute('data-product'));
+            const slideIndex = parseInt(img.getAttribute('data-slide'));
+            openModal(productId, slideIndex);
+        }
+    });
 });
