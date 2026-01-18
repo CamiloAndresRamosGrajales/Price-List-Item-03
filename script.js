@@ -51,7 +51,7 @@ document.querySelectorAll('.product-carousel').forEach(carousel => {
             e.preventDefault();
             const productId = parseInt(img.getAttribute('data-product'));
             const slideIndex = parseInt(img.getAttribute('data-slide'));
-            openModal(productId, slideIndex);
+            openImageModal(productId, slideIndex);
         }
     });
 });
