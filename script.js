@@ -42,3 +42,9 @@ function formatProductPrices() {
         element.textContent = '$' + formattedPrice;
     });
 }
+img.addEventListener('click', (e) => {
+    console.log('Imagen clickeada', img);
+    const productId = parseInt(img.getAttribute('data-product'));
+    const slideIndex = parseInt(img.getAttribute('data-slide'));
+    openModal(productId, slideIndex);
+});
