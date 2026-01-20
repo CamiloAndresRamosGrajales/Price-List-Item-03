@@ -459,7 +459,7 @@ body {
 /* Pantallas grandes (1200px+) - 3 columnas */
 @media (min-width: 1200px) {
     .category-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
     .category-image {
         aspect-ratio: 3/2;
