@@ -634,35 +634,3 @@ body {
 .product-card[data-disponible="false"] {
     display: none;
 }
-/* Etiqueta VENDIDO */
-.sold-label {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: #ff0000;
-    color: white;
-    padding: 8px 15px;
-    font-weight: bold;
-    font-size: 14px;
-    border-radius: 4px;
-    z-index: 10;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Opcional: Estilos para productos vendidos */
-.product-card[data-disponible="false"] {
-    opacity: 0.9;
-}
-
-.product-card[data-disponible="false"] .product-cta {
-    opacity: 0.6;
-    pointer-events: none;
-    cursor: not-allowed;
-}
-
-.product-card[data-disponible="false"] .product-price {
-    color: #999;
-    text-decoration: line-through;
-}
