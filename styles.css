@@ -634,7 +634,7 @@ body {
 .product-card[data-disponible="false"] {
     display: none;
 }
-/* Etiqueta de VENDIDO en Rojo */
+/* Etiqueta VENDIDO */
 .sold-label {
     position: absolute;
     top: 15px;
@@ -651,13 +651,18 @@ body {
     letter-spacing: 1px;
 }
 
-/* Opcional: Para deshabilitar el producto visualmente */
+/* Opcional: Estilos para productos vendidos */
 .product-card[data-disponible="false"] {
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .product-card[data-disponible="false"] .product-cta {
     opacity: 0.6;
     pointer-events: none;
     cursor: not-allowed;
+}
+
+.product-card[data-disponible="false"] .product-price {
+    color: #999;
+    text-decoration: line-through;
 }
