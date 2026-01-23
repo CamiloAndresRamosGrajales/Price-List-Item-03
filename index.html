@@ -539,57 +539,62 @@
                     </div>
                 </div>
 
-				<!-- Producto 2 - DISPONIBLE -->
-                <div class="product-card" data-disponible="true">
-                    <div class="product-carousel" id="carousel-2">
-                        <div class="carousel-container">
-                            <div class="carousel-slide" onclick="openImageModal(2, 0)">
-                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/carrusel/iphone_14_plus_front.jpg" 
-                                     alt="iPhone 14 frente">
-                            </div>
-                            <div class="carousel-slide" onclick="openImageModal(2, 1)">
-                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/carrusel/iphone_14_plus_side.jpg" 
-                                     alt="iPhone 14 colores">
-                            </div>
-                            <div class="carousel-slide" onclick="openImageModal(2, 2)">
-                                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/carrusel/iphone_14_plus_back.jpg" 
-                                     alt="iPhone 14 cámara">
-                            </div>
-                        </div>
-                        <button class="carousel-btn carousel-prev" onclick="prevSlide(1)">‹</button>
-                        <button class="carousel-btn carousel-next" onclick="nextSlide(1)">›</button>
-                        <div class="carousel-indicators">
-                            <button class="carousel-indicator active" onclick="goToSlide(2, 0)"></button>
-                            <button class="carousel-indicator" onclick="goToSlide(1, 1)"></button>
-                            <button class="carousel-indicator" onclick="goToSlide(1, 2)"></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">iPhone 14 Plus 256GB Refurbished</h3>
-                        <p class="product-description">iPhone avanzado con Notch, cámara doble de 12MP y chip A15.</p>
-                        <div class="product-price">$2.000</div>
-                        <ul class="product-features">
-                            <li><i class="fas fa-mobile-alt"></i> 6.7" Super Retina XDR</li>
-                            <li><i class="fas fa-camera"></i> Doble cámara 12MP</li>
-							<li><i class="fas fa-battery-full"></i> Bateria 89%</li>
-                            <li><i class="fas fa-microchip"></i> Chip A15 Bionic</li>
-							<li><i class="fas fa-thumbs-up"></i> Refurbished 10/10</li>
-							<li><i class="fas fa-shield-alt"></i> Garantía 3 meses</li>
-                        </ul>
-						<!-- Botón de WhatsApp -->
-                        <a href="https://wa.me/573128822591?text=Hola%20USA|DOS,%20estoy%20interesado%20en%20el%20iPhone%2014%20Plus%20256GB" 
-                           class="product-cta whatsapp-cta" 
-                           target="_blank">
-                           <i class="fab fa-whatsapp"></i> Consultar en WhatsApp
-                        </a>
-						    <!-- Botón de Apple -->
-    					<a href="https://www.apple.com/co/iphone/compare/?modelList=iphone-17,iphone-14-plus,iphone-15-plus" 
-       						class="product-cta apple-cta" 
-      						target="_blank">
-       						<i class="fab fa-apple"></i> Compara los modelos
-    					</a>
-                    </div>
-                </div>
+<!-- Producto 2 - VENDIDO -->
+<div class="product-card" data-disponible="false">
+    <!-- Etiqueta de VENDIDO diagonal -->
+    <div class="sold-label"></div>
+    
+    <div class="product-carousel" id="carousel-2">
+        <div class="carousel-container">
+            <div class="carousel-slide" onclick="openImageModal(2, 0)">
+                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/carrusel/iphone_14_plus_front.jpg" 
+                     alt="iPhone 14 frente">
+            </div>
+            <div class="carousel-slide" onclick="openImageModal(2, 1)">
+                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/carrusel/iphone_14_plus_side.jpg" 
+                     alt="iPhone 14 colores">
+            </div>
+            <div class="carousel-slide" onclick="openImageModal(2, 2)">
+                <img src="https://raw.githubusercontent.com/CamiloAndresRamosGrajales/Price-List-Item-03/main/images/carrusel/iphone_14_plus_back.jpg" 
+                     alt="iPhone 14 cámara">
+            </div>
+        </div>
+        <button class="carousel-btn carousel-prev" onclick="prevSlide(1)">‹</button>
+        <button class="carousel-btn carousel-next" onclick="nextSlide(1)">›</button>
+        <div class="carousel-indicators">
+            <button class="carousel-indicator active" onclick="goToSlide(2, 0)"></button>
+            <button class="carousel-indicator" onclick="goToSlide(1, 1)"></button>
+            <button class="carousel-indicator" onclick="goToSlide(1, 2)"></button>
+        </div>
+    </div>
+    <div class="product-info">
+        <h3 class="product-title">iPhone 14 Plus 256GB Refurbished</h3>
+        <p class="product-description">iPhone avanzado con Notch, cámara doble de 12MP y chip A15.</p>
+        <div class="product-price">$2.000</div>
+        <ul class="product-features">
+            <li><i class="fas fa-mobile-alt"></i> 6.7" Super Retina XDR</li>
+            <li><i class="fas fa-camera"></i> Doble cámara 12MP</li>
+            <li><i class="fas fa-battery-full"></i> Bateria 89%</li>
+            <li><i class="fas fa-microchip"></i> Chip A15 Bionic</li>
+            <li><i class="fas fa-thumbs-up"></i> Refurbished 10/10</li>
+            <li><i class="fas fa-shield-alt"></i> Garantía 3 meses</li>
+        </ul>
+        <!-- Botón de WhatsApp (opcionalmente deshabilitado o con mensaje diferente) -->
+        <a href="https://wa.me/573128822591?text=Hola%20USA|DOS,%20estoy%20interesado%20en%20el%20iPhone%2014%20Plus%20256GB" 
+           class="product-cta whatsapp-cta" 
+           target="_blank"
+           style="opacity: 0.7; cursor: not-allowed;" 
+           onclick="return false;">
+           <i class="fab fa-whatsapp"></i> Producto Vendido
+        </a>
+        <!-- Botón de Apple -->
+        <a href="https://www.apple.com/co/iphone/compare/?modelList=iphone-17,iphone-14-plus,iphone-15-plus" 
+            class="product-cta apple-cta" 
+            target="_blank">
+            <i class="fab fa-apple"></i> Compara los modelos
+        </a>
+    </div>
+</div>
 
                 <!-- Producto 3 - DISPONIBLE -->
                 <div class="product-card" data-disponible="true">
