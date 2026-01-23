@@ -652,7 +652,7 @@ body {
     bottom: 0;
     left: 0;
     transform: translate(-25%, 25%) rotate(-45deg);
-    transform-origin: center;
+    transform-origin: left;
     
     background: linear-gradient(45deg, #ff0000, #cc0000);
     color: white;
@@ -669,7 +669,7 @@ body {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     
     /* Asegurar que cubra bien la diagonal */
-    width: 150%;
+    width: 250%;
 }
 
 /* Opcional: Oscurecer ligeramente la tarjeta cuando está vendida */
