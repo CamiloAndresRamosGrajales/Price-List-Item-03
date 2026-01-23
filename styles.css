@@ -634,3 +634,55 @@ body {
 .product-card[data-disponible="false"] {
     display: none;
 }
+/* Etiqueta de vendido diagonal */
+.sold-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.sold-label::before {
+    content: 'VENDIDO';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-25%, 25%) rotate(-45deg);
+    transform-origin: center;
+    
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 10px 60px;
+    text-align: center;
+    letter-spacing: 2px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    z-index: 11;
+    border: 2px solid white;
+    
+    /* Efecto de texto con sombra para mejor legibilidad */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    
+    /* Asegurar que cubra bien la diagonal */
+    width: 150%;
+}
+
+/* Opcional: Oscurecer ligeramente la tarjeta cuando está vendida */
+.product-card[data-disponible="false"] .product-carousel img {
+    filter: brightness(0.9);
+}
+
+.product-card[data-disponible="false"] .product-info {
+    position: relative;
+}
+
+/* Asegurar que la etiqueta esté por encima del contenido */
+.product-card {
+    position: relative;
+    overflow: hidden;
+}
