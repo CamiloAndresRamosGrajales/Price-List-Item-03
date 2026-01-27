@@ -647,7 +647,7 @@ body {
 }
 
 .sold-label::before {
-    content: 'VENDIDO';
+    content: 'AGOTADO *';
     position: absolute;
     bottom: 0;
     left: 0;
